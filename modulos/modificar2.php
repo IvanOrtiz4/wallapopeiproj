@@ -1,27 +1,61 @@
 <?php 
 
-/* Autor: Eloy Boan e Ivan Ortiz
-Data: 2020
-Descripció: Apartado donde se modifican los datos del producto
+/* Autor: Ivan Ortiz y Eloy Boan
+Data: 07/02/2021
+Descripció: Página para mostrar los productos
+
+
+error_reporting(E_ALL ^ E_NOTICE);
+$nombre = $_POST['nombre'];
+$desc = $_POST['desc'];
+$id = $_POST['id'];
+
+
+$con = mysqli_connect('localhost', 'ubuntu', 'ubuntu', 'wallapopei');
+
+
+echo $desc;
+echo $id;
+echo $nombre;
+echo "<br>";
+
+
+$sql = "UPDATE Producto set Nombre_producto = '$nombre', Descripcion = '$desc' WHERE id_imagen = '$id'";
+
+$result = mysqli_query($con, $sql);
 */
 
-$z=$_GET['ID_PRODUCTO'];
 
-define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'ivan');
-define('DB_PASSWORD', 'Rentable-2525');
-define('DB_NAME', 'wallapopei');
- 
 
-$id = $_post['id'];
-$nomprod= $_post['nomprod'];
-$desc = $_post['desc'];
-$precio = $_post['precio'];
-$dim = $_post['dim'];
-$peso = $_post['peso'];
+$servername = "localhost";
+$username = "ubuntu";
+$password = "ubuntu";
+$dbname = "wallapopei";
 
-$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+$nombre = $_POST['nombre'];
+$desc = $_POST['desc'];
+$id = $_POST['id'];
 
-$sql = "UPDATE Producto SET Nombre_producto='$nomprod', Descripcion='$desc', Precio='$precio', Dimensiones='$dim', Peso='$peso'";
-$result = mysqli_query($link,$sql);
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    // set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $sql = "UPDATE Producto SET Nombre_producto='$nombre', Descripcion = '$desc' WHERE id_imagen = '$id'";
+
+    // Prepare statement
+    $stmt = $conn->prepare($sql);
+
+    // execute the query
+    $stmt->execute();
+
+    // echo a message to say the UPDATE succeeded
+    echo $stmt->rowCount() . " records UPDATED successfully";
+    }
+catch(PDOException $e)
+    {
+    echo $sql . "<br>" . $e->getMessage();
+    }
+
+$conn = null;
 ?>
