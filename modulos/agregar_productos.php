@@ -12,8 +12,8 @@ require_once('config.php');
 	
 	if(isset($_POST["enviar"])){
 
-		if ($conn->connect_error) {
-			die("Connection failed: " . $linl->connect_error);
+		if ($link->connect_error) {
+			die("Connection failed: " . $link->connect_error);
 		} 
 		$dir_subida= 'img/';
 		$id1 =  mt_rand();
@@ -23,7 +23,7 @@ require_once('config.php');
 		$fichero_subido2= $dir_subida. $id2;
 		$fichero_subido3= $dir_subida. $id3;
 	    
-	   //$fichero_subido= $dir_subida. basename($_FILES['myFile1']['name']);
+            //subir imagen 1
 	    if(move_uploaded_file($_FILES['myFile1']['tmp_name'],  $fichero_subido1)) {   
 			echo "El fichero es válido y se subió con éxito.";
 		} 
@@ -32,7 +32,7 @@ require_once('config.php');
 		}
 	    echo '</br>';
 		
-		
+		//subir imagen 2
 	    if(move_uploaded_file($_FILES['myFile2']['tmp_name'],  $fichero_subido2)) {   
 			echo "El fichero es válido y se subió con éxito.";
 		} 
@@ -41,7 +41,7 @@ require_once('config.php');
 		}
 		echo '</br>';
 		
-			
+		//subir imagen 3	
 		if(move_uploaded_file($_FILES['myFile3']['tmp_name'],  $fichero_subido3)) {   
 			echo "El fichero es válido y se subió con éxito.";
 		} 
@@ -56,7 +56,7 @@ require_once('config.php');
 		$ID_PRODUCTO = md5(uniqid(mt_rand()));
 		$ID_CATEGORIA = md5(uniqid(mt_rand()));
 		$Id_cliente = md5(uniqid(mt_rand()));
-	
+	        /*Consulta SQL que inserta todos los datos de cada producto*/
 		$sql="INSERT INTO `Producto` (`Nombre_producto`, `Descripcion`, `Precio`, `Dimensiones`, `Peso`, `ID_PRODUCTO` , `Fecha`, `ID_Cliente`, `Categoria`, `id_imagen1`, `id_imagen2`, `id_imagen3`) VALUES ('$_POST[Nombre]', '$_POST[Desc]', '$_POST[Precio]', '$_POST[Dimensiones]', '$_POST[Peso]', '$ID_PRODUCTO', '$_POST[Fecha]' , '$Id_cliente' , '$_POST[options]', '$id1','$id2','$id3')";
 			
 		if (mysqli_query($link, $sql)) {
@@ -65,7 +65,7 @@ require_once('config.php');
 		else {
 			echo "Error: " . $sql . "" . mysqli_error($link);
 		}
-		$conn->close();
+		$link->close();
 		}
 ?>
 
@@ -80,7 +80,7 @@ require_once('config.php');
     <div class = "header">
             WallapopEI
         </div>
-    <?php include("menu.php");?>
+    <?php include("menu2.php");?>
 </head>
 </div>
 <html lang="es">
@@ -98,15 +98,12 @@ require_once('config.php');
                 </div>
             </div>
         </div>
-    </div>
-    
-    
-    <div class="single-product-area">
+    </div><div class="single-product-area">
         <div class="zigzag-bottom"></div>
         <div class="container">
 			    <form class="well form-horizontal" method="post"  id="formulario" name="fRegistro" enctype="multipart/form-data">
 					<fieldset>
-
+<!--Nombre producto-->
 					<div class="form-group">
 					  <label class="col-md-4 control-label">Producto</label>  
 					  <div class="col-md-4 inputGroupContainer">
@@ -116,7 +113,7 @@ require_once('config.php');
 					   </div>
 					  </div>
 					</div>
- 
+ <!--Agregar descripcion-->
 					<div class="form-group">
 					  <label class="col-md-4 control-label">Descripcion</label>  
 					    <div class="col-md-4 inputGroupContainer">
@@ -126,7 +123,7 @@ require_once('config.php');
 					    </div>
 					  </div>
 					</div>
- 
+ <!--Agregar precio-->
 					<div class="form-group">
 					  <label class="col-md-4 control-label">Precio</label>  
 					  <div class="col-md-4 inputGroupContainer">
@@ -136,7 +133,7 @@ require_once('config.php');
 					    </div>
 					  </div>
 					</div>
- 
+ <!--Agregar dimensiones-->
 					<div class="form-group">
 					  <label class="col-md-4 control-label">Dimensiones</label> 
 					    <div class="col-md-4 inputGroupContainer">
@@ -146,7 +143,7 @@ require_once('config.php');
 					    </div>
 					  </div>
 					</div>
-
+<!--Agregar peso-->
                     <div class="form-group">
 					  <label class="col-md-4 control-label">Peso</label> 
 					    <div class="col-md-4 inputGroupContainer">
@@ -157,6 +154,7 @@ require_once('config.php');
 					  </div>
 					</div>
 		 			</br>
+		 			<!--Elegir categoria-->
 					<div class="form-group">
 					  <label class="col-md-4 control-label">Categoria</label> 
 					    <form name="selcategoria" method="post">
@@ -170,7 +168,7 @@ require_once('config.php');
 					</div>
 
 					</br>
-
+<!--Nombre producto-->
 					<div class="form-group">
 					  <label class="col-md-4 control-label">Fecha de creacion</label>  
 					    <div class="col-md-4 inputGroupContainer">
@@ -181,6 +179,7 @@ require_once('config.php');
 					  </div>
 					</div>
 					</br>
+                    <!--Seleccionar la imagen-->
 					Selecciona l'arxiu a pujar:
 					<INPUT TYPE="HIDDEN" NAME="MAX_FILE_SIZE" VALUE='102400'>   
 					<input type="file" name="myFile1">
@@ -199,6 +198,6 @@ require_once('config.php');
     </div>
 
     <?php include("footer.php");?>
-    <?php include("js.php");?>
   </body>
 </html>
+		

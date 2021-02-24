@@ -1,20 +1,20 @@
 <?php
 /* Autor: Eloy Boan e Ivan Ortiz
 Data: 2020
-DescripciÃ³: Pagina para mostrar productos
+Descripción: Pagina para mostrar productos
 */
-
+/*Conexión a la base de datos*/
 define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'ivan');
-define('DB_PASSWORD', 'Rentable-2525');
-define('DB_NAME', 'wallapopei');
- 
+define('DB_USERNAME', '222435');
+define('DB_PASSWORD', 'Rentable25');
+define('DB_NAME', '222435');
+/*Verificamos que la conexión se ha realizado con éxito */
 $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
 if($link === false){
     die("ERROR: Could not connect. " . mysqli_connect_error());
 }
-/*Orden SQL */
+
 
 ?>
 <!DOCTYPE html>
@@ -35,7 +35,7 @@ if($link === false){
     <div class = "header">
             WallapopEI
         </div>
-        <?php include("menu.php");?>
+        <?php include("menu3.php");?>
 <html lang="es">
 
 <?php
@@ -122,6 +122,7 @@ else{
 ?>
 
 <div>
+    <!-- Escoger los PRODUCTOS -->
     <h2 align="center">Productos disponibles</h2>
     <section>
     </br>
@@ -138,19 +139,18 @@ else{
     </form>
 
     </br>
-
-    &nbsp;&nbsp;&nbsp;&nbsp;<label class="col-md-4 control-label">Categoria</label> 
-    <form name="selcategoria" method="post" >
-            &nbsp;&nbsp;&nbsp;&nbsp;<select name="options" method="post">
+    <!-- Escoger la CATEGORIA del PRODUCTO-->
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="col-md-4 control-label">Categoria</label> 
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<form name="selcategoria" method="post" >
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select name="options" method="post">
                 <option value="Motor">Motor</option>
                 <option value="Ropa">Ropa</option>
                 <option value="Tecnologia">Tecnologia</option>
                 <option value="Hogar">Hogar</option>
             </select>
-            <input type="submit" name="enviar" value="enviar">
+            <input type="submit" name="Enviar" value="Enviar">
         </form>
     </br>
-
     <form style="text-align:center;" action="productos.php" method="post">
         <input style="background-color:black; color:white;" type="submit" name="precioasc" value="Precio ascendente">
         <input style="background-color:black; color:white;" type="submit" name="preciodesc" value="Precio descendente">
@@ -167,7 +167,7 @@ else{
     </form>
 </div>
 
-</br></br>
+</br></br> <!-- Formulario -->
     <table align="center" border="1" style="border-collapse:collapse;background-color:white;">
             <tr>
                 <th>Nombre Producto</th>
@@ -179,10 +179,9 @@ else{
                 <th>Imagen 1</th>
                 <th>Imagen 2</th>
                 <th>Imagen 3</th>
-                <th>Modificar</th>
             </tr>
             <?php
-            /**/
+            /*Unicar con los campos de la base de datos*/
             while($mostrarprod = $datos->fetch_array(MYSQLI_BOTH)){
                 echo'<tr>
                     <td>'.$mostrarprod['Nombre_producto'].'</td>
@@ -214,7 +213,7 @@ $consulta = "SELECT * FROM Producto";
 mysqli_select_db("wallapopei");
 $datos = mysqli_query($consulta);
 
-
+/*Mostrar los productos de la BBDD*/
 
 while ($fila=mysqli_fetch_array($datos)){
     echo"<p>";
@@ -228,6 +227,6 @@ while ($fila=mysqli_fetch_array($datos)){
     echo"-";
     echo $fila ["Fecha"];
 }
-*/
-include("footer.php");
+
+include("../footer.php");
 ?>

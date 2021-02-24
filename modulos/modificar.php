@@ -1,65 +1,49 @@
 <?php 
 
-/* Autor: Eloy Boan e Ivan Ortiz
-Data: 2020
-Descripció: Apartado donde se modifican los datos del producto
+/* Autor: Ivan Ortiz y Eloy Boan
+Data: 07/02/2021
+Descripci&#65533;: P&#65533;gina para modificar
 */
 
 error_reporting(E_ALL ^ E_NOTICE);
+
+
+$con = mysqli_connect('localhost', '222435', 'Rentable25', '222435');
+
+
 ?>
+
+<!-- Mostrar producto de forma Simple -->
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8"/>
-    <link rel = "stylesheet" href="css/estilo.css"/>
-    <link rel = "stylesheet" href="bootstrap/css/bootstrap.css"/>
-    <link rel = "stylesheet" href="fontawesome/css/all.css"/>
-    <script type = "text/javascript" href="bootstrap/js/bootstrap.js"></script>
-    <script type = "text/javascript" href="fontawesome/js/all.js"></script>
-    <script type = "text/javascript" href="js/jquery.js"></script>
-    <script type = "text/javascript" href="js/app.js"></script>
+
+<meta charset="utf-8"/>
     <link rel = "stylesheet" href="css/estilo.css"/>
     <link rel = "stylesheet" href="fontawesome/css/all.css"/>
     <script type = "text/javascript" href="fontawesome/js/all.js"></script>
-    <title> WallapopEI</title>
+    <title> Modificar </title>
+    <div class = "header">
+            WALLAPOPEI
+        </div>
+    <?php include("menu2.php");?>
 </head>
-
-<html lang="es">
-
-
-<?php
-
-$z=$_GET['id'];
-
-define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'ivan');
-define('DB_PASSWORD', 'Rentable-2525');
-define('DB_NAME', 'wallapopei');
-$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
-?>
-
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Mostrar datos</title>
-	</head>
 	<body>
 		<br>
 			<form action = "modificar2.php" method = "POST">		
 				<?php
 				$z = $_GET['id'];
-				
+				/*Consulta sql de seleccion de productos*/
 				$sql = "select * from Producto where ID_PRODUCTO = '$z'";
-				$result = mysqli_query($link, $sql);
+				$result = mysqli_query($con, $sql);
 				while($mostrar = mysqli_fetch_array($result)){
-
+				/*Formulario para modificar nombre y descripcion */
 				?>
 
 				<tr>
 					<td><?php echo "ID_PRODUCTO: $mostrar[9] <input type='hidden' name = 'id' value= '$mostrar[9]'><br>"?></td>
 					<td><?php echo "Nombre_Producto: <input type='text' name = 'nombre' value= '$mostrar[0]'><br>"?></td>
-					<td><?php echo "Descripció: <input type='text' name = 'desc' value= $mostrar[1]><br>"?></td>
+					<td><?php echo "Descripci&#65533;: <input type='text' name = 'desc' value= $mostrar[1]><br>"?></td>
 					<td></td>
 					<?php
 
@@ -74,4 +58,7 @@ $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 			</form>
 
 	</body>
+        <br>
+        <br>
+         <?php include("../footer.php");?>
 </html>

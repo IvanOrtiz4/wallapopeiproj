@@ -5,7 +5,7 @@ Autor: Ivan y Eloy
 
 Fecha: 22/12/2020
 
-Descripción: Es el index de nuestra página web
+Descripci�n: Es el index de nuestra p�gina web
 */
 ?>
 <!DOCTYPE html>
@@ -27,9 +27,10 @@ Descripción: Es el index de nuestra página web
             <h1 style = "font-family: arial">Bienvenido a WallapopEI, productos de Segunda Mano, buena calidad</h1>
             </br></br>
             <img src="img/logo.png" alt="">
-            
-            
-            
+            </br></br></br></br>
+            <div class="alert alert-warning">
+            <p style="font-family:arial;">Para a�adir, modificar y borrar productos es necesario registrarse y logearse </p>
+            </div>
         </div>
         <?php include 'footer.php'; ?>
 

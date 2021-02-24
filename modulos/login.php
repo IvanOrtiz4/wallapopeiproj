@@ -1,3 +1,13 @@
+<?php
+/*
+Autor: Ivan y Eloy
+
+Fecha: 22/12/2020
+
+Descripción: Login de la pagina
+*/
+
+?>
 <html>
 <head>
 <link rel = "stylesheet" href="../css/estilo.css"/>
@@ -65,10 +75,10 @@ margin-bottom: 10px;
 			<div class = "header">
 		    		WallapopEI
 			</div>
-			<?php include 'menu.php'; ?>
+	  		<?php include 'menu3.php'; ?>
 		<div class="login-screen">
 			<div class="app-title">
-              		
+              		<!--FORMULARIO-->
                  <form action="autenticar.php" method="post">
                    
                   <img src="../img/logo.png" style="width:104px;height:104px;">
@@ -77,7 +87,7 @@ margin-bottom: 10px;
 			</div>
 
 			<p> </p>
- 
+                        <!-- Formulari per introduir nom i contrasenya i loguearse -->
 			<div class="login-form">
 				<div class="control-group">
 				<input type="text" name="username" class="login-field" value="" placeholder="username" maxlength="10" id="login-name" required>
@@ -97,3 +107,4 @@ margin-bottom: 10px;
 	</div>
 </body>
 </html>
+	
