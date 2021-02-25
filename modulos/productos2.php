@@ -1,14 +1,11 @@
 <?php
-/* Autor: Eloy Boan e Ivan Ortiz
-Data: 2020
-Descripción: Pagina para mostrar productos
-*/
-/*Conexión a la base de datos*/
+
+
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', '222435');
 define('DB_PASSWORD', 'Rentable25');
 define('DB_NAME', '222435');
-/*Verificamos que la conexión se ha realizado con éxito */
+
 $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
 if($link === false){
@@ -35,7 +32,7 @@ if($link === false){
     <div class = "header">
             WallapopEI
         </div>
-        <?php include("menu3.php");?>
+        <?php include("menu2.php");?>
 <html lang="es">
 
 <?php
@@ -127,7 +124,7 @@ else{
     <section>
     </br>
 
-    <form action="productos.php" method="post">
+    <form action="productos2.php" method="post">
 
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <input type="text" placeholder="Buscar Nombre" name="buscanom">
@@ -151,7 +148,7 @@ else{
             <input type="submit" name="Enviar" value="Enviar">
         </form>
     </br>
-    <form style="text-align:center;" action="productos.php" method="post">
+    <form style="text-align:center;" action="productos2.php" method="post">
         <input style="background-color:black; color:white;" type="submit" name="precioasc" value="Precio ascendente">
         <input style="background-color:black; color:white;" type="submit" name="preciodesc" value="Precio descendente">
         <input style="background-color:black; color:white;" type="submit" name="fechasc" value="Fecha ascendente">
